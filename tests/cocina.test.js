@@ -53,3 +53,17 @@ test("nudge estacional en febrero para zapallito", function () {
   const receta = COCINA.generarReceta(items, 2); // febrero
   assert.equal(receta.nudge.hay, true);
 });
+
+test("asado (cocción lenta) NO se acelera con el filtro rápido", function () {
+  const items = PARSER.parsearEntrada("asado con papas", DATOS.INGREDIENTES);
+  const receta = COCINA.generarReceta(items, 2);
+  assert.equal(receta.cocionLenta, true);
+  assert.equal(receta.filtroRapido, false);
+  assert.equal(receta.tiempo, receta.tiempoOriginal);
+});
+
+test("alitas (cocción rápida) SÍ se acelera", function () {
+  const items = PARSER.parsearEntrada("2 alitas de pollo", DATOS.INGREDIENTES);
+  const receta = COCINA.generarReceta(items, 2);
+  assert.equal(receta.cocionLenta, false);
+});

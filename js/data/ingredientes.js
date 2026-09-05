@@ -261,6 +261,169 @@
       tecnica: "Desglasar la sartén para levantar el fondo de cocción.",
       tiempoBase: 0, factorTiempo: 0, salud: SALUD.AMARILLO, estacional: [],
       hack: null, sustitutos: ["Sidra, o vinagre diluido + una pizca de azúcar"]
+    },
+
+    // ── CARNES ADICIONALES (IPCVA) ─────────────────────────────────
+    {
+      nombre: "Bife de Chorizo", alias: ["bife de chorizo"],
+      categoria: "carne", origen: "IPCVA",
+      tecnica: "Sellado fuerte a fuego máximo; jugoso por dentro.",
+      tiempoBase: 10, factorTiempo: 3, salud: SALUD.AMARILLO, estacional: [],
+      hack: "Sellado perfecto: sartén MUY caliente y sal recién al final.", sustitutos: []
+    },
+    {
+      nombre: "Cuadril", alias: ["cuadril", "colita de cuadril"],
+      categoria: "carne", origen: "IPCVA",
+      tecnica: "Corte magro; sellar rápido y no sobrecocer.",
+      tiempoBase: 12, factorTiempo: 4, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Bondiola", alias: ["bondiola", "bondiola de cerdo"],
+      categoria: "carne", origen: "IPCVA",
+      tecnica: "Horno lento o desmechado; ideal para cocción prolongada.",
+      tiempoBase: 60, factorTiempo: 15, salud: SALUD.AMARILLO, estacional: [],
+      hack: "Marinado ácido con limón tierniza las fibras antes de hornear.", sustitutos: []
+    },
+    {
+      nombre: "Carré de Cerdo", alias: ["carre", "carré", "carre de cerdo"],
+      categoria: "carne", origen: "IPCVA",
+      tecnica: "Sellar la superficie y terminar al horno; reposo obligatorio.",
+      tiempoBase: 35, factorTiempo: 8, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+
+    // ── PESCADOS ADICIONALES ───────────────────────────────────────
+    {
+      nombre: "Merluza", alias: ["merluza", "filet de merluza"],
+      categoria: "pescado", origen: "Regional",
+      tecnica: "Plancha o sartén con limón; cocción breve para no secarla.",
+      tiempoBase: 12, factorTiempo: 3, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Sábalo", alias: ["sabalo", "sábalo"],
+      categoria: "pescado", origen: "Regional",
+      tecnica: "A la parrilla o frito; carne sabrosa de río.",
+      tiempoBase: 15, factorTiempo: 4, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+
+    // ── HORTICULTURA ADICIONAL (INTA) ──────────────────────────────
+    {
+      nombre: "Zanahoria", alias: ["zanahoria", "zanahorias"],
+      categoria: "verdura", origen: "INTA",
+      tecnica: "Hervir, dorar o rallar en crudo según el plato.",
+      tiempoBase: 12, factorTiempo: 2, salud: SALUD.VERDE, estacional: [1, 2, 3, 4, 5], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Morrón", alias: ["morron", "morrón", "pimiento"],
+      categoria: "verdura", origen: "INTA",
+      tecnica: "Asar y pelar para realzar el dulzor; o saltear en tiras.",
+      tiempoBase: 15, factorTiempo: 3, salud: SALUD.VERDE, estacional: [12, 1, 2, 3], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Espinaca", alias: ["espinaca"],
+      categoria: "verdura", origen: "INTA",
+      tecnica: "Salteado rápido con ajo; apenas se reduce su volumen.",
+      tiempoBase: 5, factorTiempo: 1, salud: SALUD.VERDE, estacional: [6, 7, 8, 9], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Lechuga", alias: ["lechuga"],
+      categoria: "verdura", origen: "INTA",
+      tecnica: "Consumo en crudo; lavar y secar bien antes de usar.",
+      tiempoBase: 0, factorTiempo: 0, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Remolacha", alias: ["remolacha", "remolachas"],
+      categoria: "verdura", origen: "INTA",
+      tecnica: "Hervir hasta tierna (piel se desprende sola) o al horno.",
+      tiempoBase: 40, factorTiempo: 10, salud: SALUD.VERDE, estacional: [6, 7, 8], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Brócoli", alias: ["brocoli", "brócoli"],
+      categoria: "verdura", origen: "INTA",
+      tecnica: "Al vapor 5 min para conservar color y crocancia.",
+      tiempoBase: 8, factorTiempo: 2, salud: SALUD.VERDE, estacional: [4, 5, 6, 7, 8, 9], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Batata", alias: ["batata", "batatas", "boniato"],
+      categoria: "verdura", origen: "INTA",
+      tecnica: "Al horno con cáscara o hervida para puré.",
+      tiempoBase: 25, factorTiempo: 5, salud: SALUD.VERDE, estacional: [3, 4, 5, 6], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Repollo", alias: ["repollo"],
+      categoria: "verdura", origen: "INTA",
+      tecnica: "Salteado en juliana o en guisos; soporta cocción media.",
+      tiempoBase: 10, factorTiempo: 3, salud: SALUD.VERDE, estacional: [6, 7, 8], hack: null, sustitutos: []
+    },
+
+    // ── AROMÁTICAS ADICIONALES ─────────────────────────────────────
+    {
+      nombre: "Perejil", alias: ["perejil"],
+      categoria: "aromatica", origen: "INTA",
+      tecnica: "Picar fino y agregar al final para no perder frescura.",
+      tiempoBase: 0, factorTiempo: 0, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Romero", alias: ["romero"],
+      categoria: "aromatica", origen: "INTA",
+      tecnica: "Con carnes y papas; resiste cocciones largas.",
+      tiempoBase: 0, factorTiempo: 0, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Orégano", alias: ["oregano", "orégano"],
+      categoria: "aromatica", origen: "INTA",
+      tecnica: "Seco o fresco; va al final de salsas y carnes.",
+      tiempoBase: 0, factorTiempo: 0, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Limón", alias: ["limon", "limón"],
+      categoria: "aromatica", origen: "INTA",
+      tecnica: "Jugo y ralladura; el ácido realza y tierniza.",
+      tiempoBase: 0, factorTiempo: 0, salud: SALUD.VERDE, estacional: [], hack: "El ácido del limón tierniza carnes y pescados si los dejás 20 min.", sustitutos: []
+    },
+
+    // ── BÁSICOS DE ALACENA ─────────────────────────────────────────
+    {
+      nombre: "Huevo", alias: ["huevo", "huevos"],
+      categoria: "basico", origen: "INTA",
+      tecnica: "Duro (8 min), revuelto a fuego bajo, o a la plancha.",
+      tiempoBase: 8, factorTiempo: 2, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Arroz", alias: ["arroz"],
+      categoria: "basico", origen: "INTA",
+      tecnica: "Dos partes de agua por una de arroz; reposar tapado.",
+      tiempoBase: 15, factorTiempo: 5, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Fideos", alias: ["fideos", "pasta", "tallarines", "spaghetti"],
+      categoria: "basico", origen: "INTA",
+      tecnica: "Hervir en abundante agua con sal hasta al dente.",
+      tiempoBase: 10, factorTiempo: 3, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Lentejas", alias: ["lentejas", "lenteja"],
+      categoria: "basico", origen: "INTA",
+      tecnica: "Guiso de cocción media; remojar no es obligatorio.",
+      tiempoBase: 25, factorTiempo: 5, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Queso Cremoso", alias: ["queso cremoso", "queso", "queso fresco"],
+      categoria: "lacteo", origen: "GAPA",
+      tecnica: "Agregar al final; se funde con calor suave.",
+      tiempoBase: 0, factorTiempo: 0, salud: SALUD.AMARILLO, estacional: [], hack: null, sustitutos: []
+    },
+    {
+      nombre: "Manteca", alias: ["manteca"],
+      categoria: "lacteo", origen: "GAPA",
+      tecnica: "Para dorar y dar sabor; no quemarla (fuego medio).",
+      tiempoBase: 0, factorTiempo: 0, salud: SALUD.AMARILLO, estacional: [],
+      hack: null, sustitutos: ["Aceite de oliva (más saludable)"]
+    },
+    {
+      nombre: "Aceite de Oliva", alias: ["aceite de oliva", "aceite", "oliva"],
+      categoria: "basico", origen: "GAPA",
+      tecnica: "En crudo para aliños; para cocinar a fuego medio.",
+      tiempoBase: 0, factorTiempo: 0, salud: SALUD.VERDE, estacional: [], hack: null, sustitutos: []
     }
   ];
 

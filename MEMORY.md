@@ -28,12 +28,14 @@ salud (verde|amarillo|rojo), estacional[] (meses 1-12), hack, sustitutos[]
 - **Todo en español**: nombres de variables, comentarios, UI, docs (requisito del dueño).
 - **Parser greedy**: índice de términos (nombre + alias + plural) ordenado por longitud desc; match largo primero, luego se "tacha" del string.
 - **Plurales**: el índice genera la forma plural de cada término automáticamente (`pluralizarTermino`).
-- **Filtro rápido**: si el tiempo total > 20 min, se aplica ×0.7 con notas de aceleración. *Pendiente de refinar*: hoy también se aplica a cortes de cocción lenta (asado/osobuco) donde no tiene sentido físico.
-- **Estacionalidad**: hemisferio sur. Verano [12,1,2,3], invierno [6,7,8] (solo lo que figura en el Master Source).
+- **Filtro rápido**: si el tiempo total > 20 min, ×0.7 con notas. NO se aplica a cocciones lentas (`tiempoBase >= 45`: asado, osobuco, bondiola, tapa).
+- **Estacionalidad**: hemisferio sur. Verano [12,1,2,3], invierno [6,7,8].
+- **Cámara/foto**: botón 📷 captura → redimensiona a 512px (canvas) → `POST http://localhost:11434/api/generate` (Ollama + llava-phi3) → lista de ingredientes → auto-cocina. Requiere `OLLAMA_ORIGINS="*"` (ya seteado con `setx` y relanzado el serve). Solo funciona en local; en Pages no hay Ollama del visitante.
 
 ## Pendiente / roadmap
 
-- [ ] Refinar filtro rápido para que no acelere cocciones lentas (asado, osobuco).
-- [ ] Ampliar diccionario (más cortes, verduras, especias).
-- [ ] Backend opcional (Supabase + Gemini) cuando haya tracción — el diseño original lo contempla.
+- [x] Refinar filtro rápido (no acelera cocciones lentas).
+- [x] Ampliar diccionario (58 ingredientes).
+- [x] Cámara/foto con reconocimiento local (Ollama + llava-phi3).
+- [ ] Reconocimiento de foto en producción: API de visión (Gemini/OpenAI) detrás de backend (Supabase Edge Function) — hoy la app estática no puede guardar una key.
 - [ ] Modo comercio (B2B): recetas asociadas a los productos de un negocio.

@@ -176,4 +176,105 @@
     omnibar.value = precargado;
     cocinar();
   }
+
+  // ── Cámara / foto (reconocimiento con VLM local) ────────────────
+  // Usa el modelo de visión local (Ollama + llava-phi3) para detectar
+  // los ingredientes de una foto de la heladera. Funciona cuando la app
+  // corre en ESTA PC (localhost:11434). Para el producto público hace
+  // falta una API de visión detrás de un backend.
+  var botonFoto = document.getElementById("foto");
+  var inputCaptura = document.getElementById("captura");
+  var PLACEHOLDER_ORIGINAL = omnibar.placeholder;
+
+  if (botonFoto && inputCaptura) {
+    botonFoto.addEventListener("click", function () {
+      inputCaptura.click();
+    });
+
+    inputCaptura.addEventListener("change", function () {
+      var archivo = inputCaptura.files && inputCaptura.files[0];
+      if (!archivo) return;
+      reconocerFoto(archivo);
+      inputCaptura.value = ""; // permite volver a elegir la misma foto
+    });
+  }
+
+  function reconocerFoto(archivo) {
+    var lector = new FileReader();
+    lector.onload = function (e) {
+      omnibar.value = "";
+      omnibar.placeholder = "Reconociendo ingredientes… 📸";
+      redimensionar(e.target.result, 512, function (dataUrl) {
+        pedirIngredientes(dataUrl);
+      });
+    };
+    lector.readAsDataURL(archivo);
+  }
+
+  function redimensionar(dataUrl, maxLado, cb) {
+    var img = new Image();
+    img.onload = function () {
+      var escala = Math.min(1, maxLado / Math.max(img.width, img.height));
+      var w = Math.max(1, Math.round(img.width * escala));
+      var h = Math.max(1, Math.round(img.height * escala));
+      var canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, w, h);
+      cb(canvas.toDataURL("image/jpeg", 0.85));
+    };
+    img.src = dataUrl;
+  }
+
+  function limpiarLista(texto) {
+    // Saca viñetas, salta líneas a comas, y deduplica ingredientes.
+    var limpio = String(texto || "")
+      .replace(/[\*\-\u2022]/g, "")
+      .replace(/\n+/g, ",")
+      .replace(/\s+/g, " ")
+      .trim();
+    var partes = limpio.split(/[,;]/).map(function (s) { return s.trim(); }).filter(Boolean);
+    var vistos = {};
+    var unicos = [];
+    for (var i = 0; i < partes.length; i++) {
+      var clave = partes[i].toLowerCase();
+      if (vistos[clave]) continue;
+      vistos[clave] = 1;
+      unicos.push(partes[i]);
+    }
+    return unicos.join(", ");
+  }
+
+  function pedirIngredientes(dataUrl) {
+    var base64 = dataUrl.split(",")[1];
+    var cuerpo = {
+      model: "llava-phi3",
+      prompt: "List the food ingredients visible in this photo, each one only once. Answer with ONLY a comma-separated list of ingredient names in Spanish. No sentences, no extra words.",
+      images: [base64],
+      stream: false,
+      options: { num_predict: 60, temperature: 0 }
+    };
+
+    fetch("http://localhost:11434/api/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cuerpo)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        var texto = limpiarLista(d.response);
+        omnibar.placeholder = PLACEHOLDER_ORIGINAL;
+        if (texto) {
+          omnibar.value = texto;
+          cocinar();
+        } else {
+          omnibar.placeholder = "No detecté ingredientes, probá otra foto.";
+        }
+      })
+      .catch(function () {
+        omnibar.placeholder = PLACEHOLDER_ORIGINAL;
+        alert("No pude reconocer la foto. Esto funciona en modo local (con Ollama corriendo en esta PC).");
+      });
+  }
 })();

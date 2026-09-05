@@ -182,9 +182,23 @@
   /*
    * Orquesta todo: recibe los items ya parseados y devuelve la receta.
    */
+  // Una cocción lenta (asado, osobuco, tapa de asado) no se "acelera":
+  // cortarla fina o taparla no reduce su tiempo real.
+  function esCoccionLenta(items) {
+    for (var i = 0; i < items.length; i++) {
+      var it = items[i];
+      if (it.generico || !it.ingrediente) continue;
+      if ((it.ingrediente.tiempoBase || 0) >= 45) return true;
+    }
+    return false;
+  }
+
   function generarReceta(items, mes) {
     var tiempoOriginal = calcularTiempo(items);
-    var filtro = aplicarFiltroRapido(tiempoOriginal);
+    var cocionLenta = esCoccionLenta(items);
+    var filtro = cocionLenta
+      ? { tiempo: tiempoOriginal, aplicado: false, notas: [] }
+      : aplicarFiltroRapido(tiempoOriginal);
     var sinergia = detectarSinergia(items);
     var nudge = nudgeEstacional(items, mes);
 
@@ -193,6 +207,7 @@
       tiempoOriginal: tiempoOriginal,
       tiempo: filtro.tiempo,
       filtroRapido: filtro.aplicado,
+      cocionLenta: cocionLenta,
       notasTecnica: filtro.notas,
       semaforo: semaforo(items),
       pasos: generarPasos(items),
