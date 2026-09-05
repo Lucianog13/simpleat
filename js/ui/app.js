@@ -336,4 +336,34 @@
         alert("No pude reconocer la foto: " + (e && e.message ? e.message : "error"));
       });
   }
+
+  // ── Chips rápidos (agregan al input sin borrar lo que hay) ──────
+  var filaRapidos = document.querySelector(".omnibar__rapidos");
+  if (filaRapidos) {
+    filaRapidos.addEventListener("click", function (e) {
+      var el = e.target.closest("[data-agregar]");
+      if (!el) return;
+      var ing = el.getAttribute("data-agregar");
+      var actual = omnibar.value.trim();
+      omnibar.value = actual ? actual + ", " + ing : ing;
+      omnibar.focus();
+    });
+  }
+
+  // ── Navegación inferior ─────────────────────────────────────────
+  var itemsNav = document.querySelectorAll(".pienav__item");
+  for (var n = 0; n < itemsNav.length; n++) {
+    itemsNav[n].addEventListener("click", function () {
+      var nav = this.getAttribute("data-nav");
+      if (nav === "gaucho") {
+        window.location.href = "demo-carniceria.html";
+        return;
+      }
+      if (nav === "recetas") {
+        if (!resultado.hidden) resultado.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 })();
