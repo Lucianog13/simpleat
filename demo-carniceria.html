@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="es-AR" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carnicería El Gaucho — Cocina cada corte</title>
-  <meta name="description" content="SimpleEat te dice qué cocinar con lo que tenés, con técnica de Master Chef y nomenclatura oficial argentina (IPCVA · INTA · GAPA)." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Carnicería El Gaucho — Cocina cada corte · Vértice</title>
+  <meta name="description" content="SimpleEat te dice qué cocinar con lo que tenés, con técnica de Master Chef y nomenclatura oficial argentina (IPCVA · INTA · GAPA). Un producto de Vértice." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <div class="halo halo--uno" aria-hidden="true"></div>
-  <div class="halo halo--dos" aria-hidden="true"></div>
 
   <header class="cabecera">
-    <div class="marca">
-      <span class="marca__simple">Simple</span><span class="marca__eat">Eat</span>
-      <span class="marca__nodo">Nodo Paraná</span>
+    <div class="cabecera__fila">
+      <div class="marca">
+        <span class="marca__simple">Simple</span><span class="marca__eat">Eat</span>
+        <span class="marca__nodo">Despensa</span>
+      </div>
+      <span class="marca__nodo" style="color:var(--esmeralda-prof)">Vértice</span>
     </div>
-    <p class="cabecera__lema">El chef argentino que cocina con lo que tenés.</p>
   </header>
 
   <main class="principal">
+    <!-- Saludo editorial -->
+    <section class="saludo">
+      <h1>Cociná como un chef con lo que tenés en casa</h1>
+      <p>Gastronomía inteligente, rescate de ingredientes y fuego criollo en tu cocina cotidiana.</p>
+    </section>
+
     <!-- Omnibar: el corazón de la "tecnología invisible" -->
     <section class="omnibar" aria-label="Buscador de recetas">
       <div class="omnibar__caja">
@@ -42,6 +49,16 @@
         <button id="cocinar" class="omnibar__boton" type="button">Cocinar</button>
       </div>
       <input id="captura" type="file" accept="image/*" capture="environment" hidden />
+
+      <!-- Chips rápidos de básicos -->
+      <div class="omnibar__rapidos">
+        <span class="etiqueta">Básicos:</span>
+        <button type="button" class="chip-sugerencia" data-agregar="huevo">+ Huevo</button>
+        <button type="button" class="chip-sugerencia" data-agregar="cebolla">+ Cebolla</button>
+        <button type="button" class="chip-sugerencia" data-agregar="queso">+ Queso</button>
+        <button type="button" class="chip-sugerencia" data-agregar="arroz">+ Arroz</button>
+      </div>
+
       <div class="sugerencias" id="sugerencias" aria-label="Ejemplos rápidos"></div>
     </section>
 
@@ -55,13 +72,30 @@
     </section>
   </main>
 
+  <!-- Navegación inferior -->
+  <nav class="pienav">
+    <div class="pienav__barra">
+      <button class="pienav__item activo" data-nav="despensa" type="button">
+        <span class="ico">🥘</span><span class="txt">Despensa</span>
+      </button>
+      <button class="pienav__item" data-nav="recetas" type="button">
+        <span class="ico">📖</span><span class="txt">Recetas</span>
+      </button>
+      <button class="pienav__item" data-nav="gaucho" type="button">
+        <span class="ico">🔥</span><span class="txt">El Gaucho</span>
+      </button>
+    </div>
+  </nav>
+
   <footer class="pie">
     <span>Simple<span class="marca__eat">Eat</span></span>
     <span class="pie__nota">Gastronomía argentina · Nodo Paraná</span>
+    <span class="pie__vertice">un producto de <strong>Vértice</strong></span>
   </footer>
 
   <script src="js/data/ingredientes.js"></script>
   <script src="js/data/comercio-carniceria.js"></script>
+  <script src="js/config.js"></script>
   <script src="js/core/parser.js"></script>
   <script src="js/core/cocina.js"></script>
   <script src="js/core/coping.js"></script>
