@@ -167,4 +167,13 @@
   });
 
   armarSugerencias();
+
+  // Soporte de URL: ?cocinar=asado con papas → auto-cocina al cargar
+  // (útil para demos, links compartibles y capturas con receta).
+  var params = new URLSearchParams(window.location.search);
+  var precargado = params.get("cocinar");
+  if (precargado) {
+    omnibar.value = precargado;
+    cocinar();
+  }
 })();
