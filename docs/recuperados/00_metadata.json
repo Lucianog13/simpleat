@@ -1,0 +1,14 @@
+{
+  "title": "SimpleEat Argentine Gastronomy Engine",
+  "summary": "Implementation of a comprehensive Argentine culinary intelligence system. Includes official IPCVA meat nomenclature, Entre Ríos regional fish/vegetable dictionaries, INTA seasonality logic, and a 'Master Chef Senior' instruction generator with volume-based cooking mathematics.",
+  "references": [
+    {
+      "type": "file",
+      "value": "src/logic/CopingChef.js"
+    },
+    {
+      "type": "file",
+      "value": "src/App.jsx"
+    }
+  ]
+}
