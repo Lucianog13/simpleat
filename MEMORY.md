@@ -37,5 +37,5 @@ salud (verde|amarillo|rojo), estacional[] (meses 1-12), hack, sustitutos[]
 - [x] Refinar filtro rápido (no acelera cocciones lentas).
 - [x] Ampliar diccionario (58 ingredientes).
 - [x] Cámara/foto con reconocimiento local (Ollama + llava-phi3).
+- [x] Modo comercio (B2B): perfil en `js/data/comercio.js` (nombre, rubro, color, productos); demo en `demo-carniceria.html`.
 - [ ] Reconocimiento de foto en producción: API de visión (Gemini/OpenAI) detrás de backend (Supabase Edge Function) — hoy la app estática no puede guardar una key.
-- [ ] Modo comercio (B2B): recetas asociadas a los productos de un negocio.

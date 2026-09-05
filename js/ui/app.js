@@ -23,6 +23,20 @@
     "osobuco con zapallo plomo"
   ];
 
+  // Personalización por comercio (modo B2B): si hay un perfil definido en
+  // js/data/comercio.js, la app adopta el nombre, lema, rubro y color del
+  // negocio. Sin tocar el resto del código.
+  var COM = window.COMERCIO || null;
+  if (COM) {
+    if (COM.nombre) {
+      document.querySelector(".marca__simple").textContent = COM.nombre;
+      document.querySelector(".marca__eat").textContent = "";
+    }
+    if (COM.rubro) document.querySelector(".marca__nodo").textContent = COM.rubro;
+    if (COM.lema) document.querySelector(".cabecera__lema").textContent = COM.lema;
+    if (COM.colorAcento) document.documentElement.style.setProperty("--acento", COM.colorAcento);
+  }
+
   function escapar(s) {
     return String(s)
       .replace(/&/g, "&amp;")
@@ -144,11 +158,15 @@
     renderReceta(receta, coping);
   }
 
-  // Sugerencias clicables.
+  // Sugerencias clicables (los productos del comercio, si los hay).
   function armarSugerencias() {
+    var lista = EJEMPLOS;
+    if (COM && COM.productos && COM.productos.length) {
+      lista = COM.productos.map(function (p) { return p.ejemplo; });
+    }
     var html = "";
-    for (var i = 0; i < EJEMPLOS.length; i++) {
-      html += '<button type="button" class="chip-sugerencia" data-ejemplo="' + escapar(EJEMPLOS[i]) + '">' + escapar(EJEMPLOS[i]) + "</button>";
+    for (var i = 0; i < lista.length; i++) {
+      html += '<button type="button" class="chip-sugerencia" data-ejemplo="' + escapar(lista[i]) + '">' + escapar(lista[i]) + "</button>";
     }
     sugerencias.innerHTML = html;
   }
