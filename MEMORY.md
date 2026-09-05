@@ -38,4 +38,11 @@ salud (verde|amarillo|rojo), estacional[] (meses 1-12), hack, sustitutos[]
 - [x] Ampliar diccionario (58 ingredientes).
 - [x] Cámara/foto con reconocimiento local (Ollama + llava-phi3).
 - [x] Modo comercio (B2B): perfil en `js/data/comercio.js` (nombre, rubro, color, productos); demo en `demo-carniceria.html`.
-- [ ] Reconocimiento de foto en producción: API de visión (Gemini/OpenAI) detrás de backend (Supabase Edge Function) — hoy la app estática no puede guardar una key.
+- [x] Reconocimiento de foto en producción: Supabase Edge Function `reconocer-ingredientes` + Gemini (retry multi-modelo). Secret `GEMINI_API_KEY` en el proyecto SimpleEat (ref `ysirdodhsufsdvhztvmq`). La app en Pages usa Supabase; en local usa Ollama.
+
+## Backend (producción)
+
+- Proyecto Supabase **SimpleEat** (ref `ysirdodhsufsdvhztvmq`, org ZeroTech) — SEPARADO de "El Super de la Bebida" (no tocar esa base).
+- Edge Function: `supabase/functions/reconocer-ingredientes/index.ts` → recibe `{imagen(base64), mime}` y devuelve `{ingredientes, modelo}`.
+- La anon key pública va en `js/config.js` (git). El `.env` (service key) está gitignored.
+- Deploy: `supabase functions deploy reconocer-ingredientes --project-ref ysirdodhsufsdvhztvmq` (desde la raíz del repo, no desde `supabase/`).
