@@ -264,8 +264,32 @@
     return unicos.join(", ");
   }
 
+  function esLocal() {
+    var h = location.hostname;
+    return location.protocol === "file:" || h === "localhost" || h === "127.0.0.1";
+  }
+
   function pedirIngredientes(dataUrl) {
     var base64 = dataUrl.split(",")[1];
+    if (esLocal()) {
+      pedirAOllama(base64);
+    } else {
+      pedirASupabase(base64);
+    }
+  }
+
+  function aplicarRespuesta(texto) {
+    var limpio = limpiarLista(texto);
+    omnibar.placeholder = PLACEHOLDER_ORIGINAL;
+    if (limpio) {
+      omnibar.value = limpio;
+      cocinar();
+    } else {
+      omnibar.placeholder = "No detecté ingredientes, probá otra foto.";
+    }
+  }
+
+  function pedirAOllama(base64) {
     var cuerpo = {
       model: "llava-phi3",
       prompt: "List the food ingredients visible in this photo, each one only once. Answer with ONLY a comma-separated list of ingredient names in Spanish. No sentences, no extra words.",
@@ -273,26 +297,43 @@
       stream: false,
       options: { num_predict: 60, temperature: 0 }
     };
-
     fetch("http://localhost:11434/api/generate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(cuerpo)
     })
       .then(function (r) { return r.json(); })
-      .then(function (d) {
-        var texto = limpiarLista(d.response);
-        omnibar.placeholder = PLACEHOLDER_ORIGINAL;
-        if (texto) {
-          omnibar.value = texto;
-          cocinar();
-        } else {
-          omnibar.placeholder = "No detecté ingredientes, probá otra foto.";
-        }
-      })
+      .then(function (d) { aplicarRespuesta(d.response); })
       .catch(function () {
         omnibar.placeholder = PLACEHOLDER_ORIGINAL;
-        alert("No pude reconocer la foto. Esto funciona en modo local (con Ollama corriendo en esta PC).");
+        alert("No pude reconocer la foto (modo local). ¿Ollama está corriendo?");
+      });
+  }
+
+  function pedirASupabase(base64) {
+    if (!window.CONFIG || !window.CONFIG.SUPABASE_URL) {
+      omnibar.placeholder = PLACEHOLDER_ORIGINAL;
+      alert("Falta la configuración de backend.");
+      return;
+    }
+    var url = window.CONFIG.SUPABASE_URL + "/functions/v1/" + window.CONFIG.VISION_FUNCTION;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + window.CONFIG.SUPABASE_ANON_KEY,
+        "apikey": window.CONFIG.SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({ imagen: base64, mime: "image/jpeg" })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d.error) throw new Error(d.error);
+        aplicarRespuesta(d.ingredientes);
+      })
+      .catch(function (e) {
+        omnibar.placeholder = PLACEHOLDER_ORIGINAL;
+        alert("No pude reconocer la foto: " + (e && e.message ? e.message : "error"));
       });
   }
 })();
