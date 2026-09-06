@@ -124,6 +124,9 @@
     if (verduras.length) {
       return verduras.join(" y ") + " salteados";
     }
+    if (otros.length) {
+      return otros.join(" y ");
+    }
     return "Preparado de la alacena";
   }
 

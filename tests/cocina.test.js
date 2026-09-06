@@ -67,3 +67,15 @@ test("alitas (cocción rápida) SÍ se acelera", function () {
   const receta = COCINA.generarReceta(items, 2);
   assert.equal(receta.cocionLenta, false);
 });
+
+test("título refleja lo escrito: huevo → 'Huevo' (no genérico)", function () {
+  const items = PARSER.parsearEntrada("huevo", DATOS.INGREDIENTES);
+  const receta = COCINA.generarReceta(items, 2);
+  assert.equal(receta.titulo, "Huevo");
+});
+
+test("título refleja lo escrito: huevo y arroz", function () {
+  const items = PARSER.parsearEntrada("huevo y arroz", DATOS.INGREDIENTES);
+  const receta = COCINA.generarReceta(items, 2);
+  assert.equal(receta.titulo, "Huevo y Arroz");
+});
