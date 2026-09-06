@@ -355,10 +355,6 @@
   for (var n = 0; n < itemsNav.length; n++) {
     itemsNav[n].addEventListener("click", function () {
       var nav = this.getAttribute("data-nav");
-      if (nav === "gaucho") {
-        window.location.href = "demo-carniceria.html";
-        return;
-      }
       if (nav === "recetas") {
         if (!resultado.hidden) resultado.scrollIntoView({ behavior: "smooth" });
         return;

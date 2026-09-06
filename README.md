@@ -13,11 +13,10 @@ Escribís lo que tenés en la heladera y **SimpleEat** te dice **qué cocinar** 
 <p align="center">
   <img src="assets/pantalla-inicio.png" alt="Pantalla de inicio" height="440">
   <img src="assets/pantalla-receta.png" alt="Pantalla de receta" height="440">
-  <img src="assets/pantalla-carniceria.png" alt="Modo carnicería B2B" height="440">
 </p>
 
-| Inicio — Omnibar | Receta — Master Chef | Modo comercio (B2B) |
-|:---:|:---:|:---:|
+| Inicio — Omnibar | Receta — Master Chef |
+|:---:|:---:|
 
 ---
 
@@ -29,7 +28,6 @@ Escribís lo que tenés en la heladera y **SimpleEat** te dice **qué cocinar** 
 - **CopingChef · "Ingenio Argento"** — reemplazos "croto pero rico" y hacks técnicos cuando falta algo en la alacena.
 - **Nomenclatura oficial argentina** — cortes IPCVA, pescados de río de Entre Ríos, variedades INTA, semáforo GAPA.
 - **Estacionalidad** — indicador 🌟 AHORRO y ferias de Paraná.
-- **Modo comercio (B2B)** — la app se convierte en la app de una carnicería/verdulería cambiando un solo archivo de perfil.
 
 ## 🧠 Cómo funciona
 
