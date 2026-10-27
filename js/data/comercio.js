@@ -23,7 +23,7 @@
   var PERFIL = {
     nombre: null,           // null → usa el logo "SimpleEat" original
     lema: null,             // null → usa el lema por defecto
-    rubro: "Gastronomía argentina · Nodo Paraná",
+    rubro: null,            // null → deja el nodo del HTML ("Despensa") intacto en modo consumidor
     colorAcento: null,      // null → verde orgánico por defecto (ej. "#f59e0b" para carnicería)
     // Productos destacados del negocio: clic = receta de ese producto.
     // Vacío → usa los ejemplos genéricos de la app.

@@ -23,7 +23,6 @@ Escribís lo que tenés en la heladera y **SimpleEat** te dice **qué cocinar** 
 ## ✨ Qué hace
 
 - **Omnibar de lenguaje natural** — `"2 alitas, 1 cebolla morada"` → receta profesional al instante.
-- **📷 Reconocimiento por foto** — sacá una foto de la heladera y detecta los ingredientes (visión con Gemini en la nube, o Ollama local).
 - **Master Chef Protocol** — matemática de cocción (`T = Base + Cantidad × Factor`), filtro rápido (< 20 min) y semáforo nutricional.
 - **CopingChef · "Ingenio Argento"** — reemplazos "croto pero rico" y hacks técnicos cuando falta algo en la alacena.
 - **Nomenclatura oficial argentina** — cortes IPCVA, pescados de río de Entre Ríos, variedades INTA, semáforo GAPA.
@@ -32,7 +31,7 @@ Escribís lo que tenés en la heladera y **SimpleEat** te dice **qué cocinar** 
 ## 🧠 Cómo funciona
 
 ```
-Omnibar / Foto → Parser NLP → Motor gastronómico → Receta
+Omnibar → Parser NLP → Motor gastronómico → Receta
                     │                │
             matching greedy   Master Chef + CopingChef
             + cantidades      + semáforo + estacionalidad
@@ -46,8 +45,7 @@ Todo el motor es **lógica pura en español** (`js/core/`), sin dependencias, co
 |:---|:---|
 | Frontend | HTML + CSS + JS vanilla (sin build) |
 | Estética | Design system *"Obsidian & Brasas"* (EB Garamond + Plus Jakarta Sans) |
-| Reconocimiento (nube) | Supabase Edge Function + Gemini (retry multi-modelo) |
-| Reconocimiento (local) | Ollama + llava-phi3 |
+| Analítica | Umami Cloud (privada, sin cookies) |
 | Hosting | GitHub Pages |
 | Tests | `node:test` |
 
@@ -60,12 +58,10 @@ No necesita build ni servidor:
 python -m http.server 8000   # → http://localhost:8000
 ```
 
-Para el reconocimiento por foto en local, se usa Ollama (modelo `llava-phi3`).
-
 ## 🧪 Tests
 
 ```bash
-node --test tests/parser.test.js tests/cocina.test.js
+node --test tests/*.test.js
 ```
 
 ## 📁 Estructura
@@ -79,7 +75,6 @@ js/core/parser.js           # Parser NLP (puro)
 js/core/cocina.js           # Master Chef Protocol (puro)
 js/core/coping.js           # CopingChef (puro)
 js/ui/app.js                # Capa DOM
-supabase/functions/         # Edge Function de visión
 tests/                      # node:test
 ```
 

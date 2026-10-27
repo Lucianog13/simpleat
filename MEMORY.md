@@ -30,7 +30,7 @@ salud (verde|amarillo|rojo), estacional[] (meses 1-12), hack, sustitutos[]
 - **Plurales**: el índice genera la forma plural de cada término automáticamente (`pluralizarTermino`).
 - **Filtro rápido**: si el tiempo total > 20 min, ×0.7 con notas. NO se aplica a cocciones lentas (`tiempoBase >= 45`: asado, osobuco, bondiola, tapa).
 - **Estacionalidad**: hemisferio sur. Verano [12,1,2,3], invierno [6,7,8].
-- **Cámara/foto**: botón 📷 captura → redimensiona a 512px (canvas) → `POST http://localhost:11434/api/generate` (Ollama + llava-phi3) → lista de ingredientes → auto-cocina. Requiere `OLLAMA_ORIGINS="*"` (ya seteado con `setx` y relanzado el serve). Solo funciona en local; en Pages no hay Ollama del visitante.
+- **Cámara/foto**: ELIMINADA (rompía la app en el celular; pedido explícito de Lucho). No reintroducir sin luz verde. La Edge Function de visión (`supabase/functions/reconocer-ingredientes`) sigue deployada pero no se usa en la app publicada.
 
 ## Pendiente / roadmap
 
@@ -38,11 +38,15 @@ salud (verde|amarillo|rojo), estacional[] (meses 1-12), hack, sustitutos[]
 - [x] Ampliar diccionario (58 ingredientes).
 - [x] Cámara/foto con reconocimiento local (Ollama + llava-phi3).
 - [x] Modo comercio (B2B): perfil en `js/data/comercio.js` (nombre, rubro, color, productos); demo en `demo-carniceria.html`.
-- [x] Reconocimiento de foto en producción: Supabase Edge Function `reconocer-ingredientes` + Gemini (retry multi-modelo). Secret `GEMINI_API_KEY` en el proyecto SimpleEat (ref `ysirdodhsufsdvhztvmq`). La app en Pages usa Supabase; en local usa Ollama.
+- [x] Reconocimiento de foto en producción: Supabase Edge Function `reconocer-ingredientes` + Gemini (retry multi-modelo). Secret `GEMINI_API_KEY` en el proyecto SimpleEat (ref `ysirdodhsufsdvhztvmq`). La app en Pages usa Supabase; en local usa Ollama. *(Nota 2026-10: cámara eliminada de la app; la función quedó deployada pero sin uso.)*
+- [x] Bug de título: la aromática/básico se perdía si había proteína. Fix en `generarTitulo` (js/core/cocina.js): "2 alitas, 1 cebolla morada" → "Alitas de Pollo con Cebolla Morada". Con tests.
+- [x] Umami Cloud instalado (script en `<head>` de index.html + evento `umami.track("cocinar")`). PENDIENTE: el `data-website-id` real de Lucho.
+- [ ] Funciones Pro (a futuro, después del lanzamiento gratis).
 
 ## Backend (producción)
 
+- `js/config.js` fue ELIMINADO (2026-10): quedó muerto al quitar la cámara. No reintroducir sin re-habilitar la visión.
 - Proyecto Supabase **SimpleEat** (ref `ysirdodhsufsdvhztvmq`, org ZeroTech) — SEPARADO de "El Super de la Bebida" (no tocar esa base).
 - Edge Function: `supabase/functions/reconocer-ingredientes/index.ts` → recibe `{imagen(base64), mime}` y devuelve `{ingredientes, modelo}`.
-- La anon key pública va en `js/config.js` (git). El `.env` (service key) está gitignored.
+- La anon key pública iba en `js/config.js` (eliminado 2026-10). El `.env` (service key) está gitignored y sigue en local por si se re-habilita visión.
 - Deploy: `supabase functions deploy reconocer-ingredientes --project-ref ysirdodhsufsdvhztvmq` (desde la raíz del repo, no desde `supabase/`).

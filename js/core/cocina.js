@@ -115,10 +115,14 @@
       else if (c === "verdura") verduras.push(it.ingrediente.nombre);
       else otros.push(it.ingrediente.nombre);
     }
-    if (proteinas.length && verduras.length) {
-      return proteinas[0] + " con " + verduras[0] + (verduras.length > 1 ? " y más" : "");
-    }
     if (proteinas.length) {
+      // La proteína manda, pero el acompañamiento (verdura u otro) se nombra:
+      // "asado y cebolla" debe dar "Asado con Cebolla", no "Asado a la plancha".
+      var acompanante = verduras[0] || otros[0];
+      if (acompanante) {
+        return proteinas[0] + " con " + acompanante +
+          ((verduras.length + otros.length) > 1 ? " y más" : "");
+      }
       return proteinas.join(" y ") + " a la plancha";
     }
     if (verduras.length) {

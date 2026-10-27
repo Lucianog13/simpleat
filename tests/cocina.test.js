@@ -79,3 +79,15 @@ test("título refleja lo escrito: huevo y arroz", function () {
   const receta = COCINA.generarReceta(items, 2);
   assert.equal(receta.titulo, "Huevo y Arroz");
 });
+
+test("título refleja lo escrito: proteína con aromática se nombra", function () {
+  const items = PARSER.parsearEntrada("2 alitas, 1 cebolla morada", DATOS.INGREDIENTES);
+  const receta = COCINA.generarReceta(items, 2);
+  assert.equal(receta.titulo, "Alitas de Pollo con Cebolla Morada");
+});
+
+test("título refleja lo escrito: carne con básico se nombra", function () {
+  const items = PARSER.parsearEntrada("asado con cebolla", DATOS.INGREDIENTES);
+  const receta = COCINA.generarReceta(items, 2);
+  assert.equal(receta.titulo, "Asado con Cebolla");
+});

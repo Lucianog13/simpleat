@@ -156,6 +156,11 @@
     var receta = COCINA.generarReceta(items);
     var coping = COPING.decorar(items);
     renderReceta(receta, coping);
+
+    // Analítica de uso (Umami): cuenta cada "Cocinar" sin datos personales.
+    if (window.umami) {
+      try { window.umami.track("cocinar"); } catch (err) { /* sin analítica no se rompe la app */ }
+    }
   }
 
   // Sugerencias clicables (los productos del comercio, si los hay).
