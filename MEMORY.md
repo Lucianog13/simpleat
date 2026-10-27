@@ -1,4 +1,4 @@
-# MEMORY — SimpleEat
+# MEMORY — Simpleat
 
 Notas de arquitectura y decisiones para que cualquier sesión futura se auto-bootstrapee sin releer todo.
 
@@ -38,7 +38,7 @@ salud (verde|amarillo|rojo), estacional[] (meses 1-12), hack, sustitutos[]
 - [x] Ampliar diccionario (58 ingredientes).
 - [x] Cámara/foto con reconocimiento local (Ollama + llava-phi3).
 - [x] Modo comercio (B2B): perfil en `js/data/comercio.js` (nombre, rubro, color, productos); demo en `demo-carniceria.html`.
-- [x] Reconocimiento de foto en producción: Supabase Edge Function `reconocer-ingredientes` + Gemini (retry multi-modelo). Secret `GEMINI_API_KEY` en el proyecto SimpleEat (ref `ysirdodhsufsdvhztvmq`). La app en Pages usa Supabase; en local usa Ollama. *(Nota 2026-10: cámara eliminada de la app; la función quedó deployada pero sin uso.)*
+- [x] Reconocimiento de foto en producción: Supabase Edge Function `reconocer-ingredientes` + Gemini (retry multi-modelo). Secret `GEMINI_API_KEY` en el proyecto Simpleat (ref `ysirdodhsufsdvhztvmq`). La app en Pages usa Supabase; en local usa Ollama. *(Nota 2026-10: cámara eliminada de la app; la función quedó deployada pero sin uso.)*
 - [x] Bug de título: la aromática/básico se perdía si había proteína. Fix en `generarTitulo` (js/core/cocina.js): "2 alitas, 1 cebolla morada" → "Alitas de Pollo con Cebolla Morada". Con tests.
 - [x] Umami Cloud instalado (script en `<head>` de index.html + evento `umami.track("cocinar")`). PENDIENTE: el `data-website-id` real de Lucho.
 - [ ] Funciones Pro (a futuro, después del lanzamiento gratis).
@@ -46,7 +46,7 @@ salud (verde|amarillo|rojo), estacional[] (meses 1-12), hack, sustitutos[]
 ## Backend (producción)
 
 - `js/config.js` fue ELIMINADO (2026-10): quedó muerto al quitar la cámara. No reintroducir sin re-habilitar la visión.
-- Proyecto Supabase **SimpleEat** (ref `ysirdodhsufsdvhztvmq`, org ZeroTech) — SEPARADO de "El Super de la Bebida" (no tocar esa base).
+- Proyecto Supabase **Simpleat** (ref `ysirdodhsufsdvhztvmq`, org ZeroTech) — SEPARADO de "El Super de la Bebida" (no tocar esa base).
 - Edge Function: `supabase/functions/reconocer-ingredientes/index.ts` → recibe `{imagen(base64), mime}` y devuelve `{ingredientes, modelo}`.
 - La anon key pública iba en `js/config.js` (eliminado 2026-10). El `.env` (service key) está gitignored y sigue en local por si se re-habilita visión.
 - Deploy: `supabase functions deploy reconocer-ingredientes --project-ref ysirdodhsufsdvhztvmq` (desde la raíz del repo, no desde `supabase/`).

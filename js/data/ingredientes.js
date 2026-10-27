@@ -1,5 +1,5 @@
 /*
- * SimplEat — Diccionario de gastronomía argentina (Nodo Paraná).
+ * Simpleat — Diccionario de gastronomía argentina (Entre Ríos).
  *
  * "Verdad de tierra" del motor: nomenclatura oficial IPCVA (carnes),
  * INTA (horticultura), GAPA (semáforo nutricional) y estándares

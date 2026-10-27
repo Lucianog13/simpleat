@@ -19,11 +19,11 @@
 })(typeof window !== "undefined" ? window : globalThis, function () {
   "use strict";
 
-  // Perfil por defecto: la marca SimpleEat (modo consumidor).
+  // Perfil por defecto: la marca Simpleat (modo consumidor).
   var PERFIL = {
-    nombre: null,           // null → usa el logo "SimpleEat" original
+    nombre: null,           // null → usa el logo "Simpleat" original
     lema: null,             // null → usa el lema por defecto
-    rubro: null,            // null → deja el nodo del HTML ("Despensa") intacto en modo consumidor
+    rubro: null,            // null → deja el nodo del HTML ("Entre Ríos") intacto en modo consumidor
     colorAcento: null,      // null → verde orgánico por defecto (ej. "#f59e0b" para carnicería)
     // Productos destacados del negocio: clic = receta de ese producto.
     // Vacío → usa los ejemplos genéricos de la app.

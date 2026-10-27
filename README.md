@@ -1,8 +1,8 @@
-# 🥘 SimpleEat — El chef argentino de tu heladera
+# 🥘 Simpleat — El chef argentino de tu heladera
 
-> **Un producto de [Vértice](https://github.com/Lucianog13) · Gastronomía argentina · Nodo Paraná**
+> **Un producto de [Vértice](https://github.com/Lucianog13) · Gastronomía argentina · Entre Ríos**
 
-Escribís lo que tenés en la heladera y **SimpleEat** te dice **qué cocinar** y **cómo**, con técnica de Master Chef y nomenclatura oficial argentina (IPCVA · INTA · GAPA), más el toque regional de Entre Ríos.
+Escribís lo que tenés en la heladera y **Simpleat** te dice **qué cocinar** y **cómo**, con técnica de Master Chef y nomenclatura oficial argentina (IPCVA · INTA · GAPA), más el toque regional de Entre Ríos.
 
 **[▶ Probar la demo en vivo](https://lucianog13.github.io/simpleat/)**
 
