@@ -33,7 +33,10 @@
       document.querySelector(".marca__eat").textContent = "";
     }
     if (COM.rubro) document.querySelector(".marca__nodo").textContent = COM.rubro;
-    if (COM.lema) document.querySelector(".cabecera__lema").textContent = COM.lema;
+    if (COM.lema) {
+      var lemaEl = document.querySelector(".cabecera__lema");
+      if (lemaEl) lemaEl.textContent = COM.lema;
+    }
     if (COM.colorAcento) document.documentElement.style.setProperty("--acento", COM.colorAcento);
   }
 
