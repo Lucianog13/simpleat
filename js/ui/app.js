@@ -160,9 +160,9 @@
     var coping = COPING.decorar(items);
     renderReceta(receta, coping);
 
-    // Analítica de uso (Umami): cuenta cada "Cocinar" sin datos personales.
-    if (window.umami) {
-      try { window.umami.track("cocinar"); } catch (err) { /* sin analítica no se rompe la app */ }
+    // Analítica y conversiones (Umami + GA4 + Google Ads): centralizado en js/ui/analytics.js.
+    if (window.Analytics) {
+      try { window.Analytics.cocinar(); } catch (err) { /* sin analítica no se rompe la app */ }
     }
   }
 
