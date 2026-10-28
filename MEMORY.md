@@ -37,11 +37,11 @@ salud (verde|amarillo|rojo), estacional[] (meses 1-12), hack, sustitutos[]
 - [x] Refinar filtro rápido (no acelera cocciones lentas).
 - [x] Ampliar diccionario (58 ingredientes).
 - [x] Cámara/foto con reconocimiento local (Ollama + llava-phi3).
-- [x] Modo comercio (B2B): perfil en `js/data/comercio.js` (nombre, rubro, color, productos). *(Nota 2026-10: `demo-carniceria.html` ya no existe en el repo; el perfil de ejemplo quedó comentado en comercio.js.)*
+- [x] Modo comercio (B2B): perfil en `js/data/comercio.js` (nombre, rubro, color, productos). Landing B2B en `demo-carniceria.html` (perfil genérico de carnicería en `js/data/comercio-demo.js` + CTA de WhatsApp "Pedí tu demo").
 - [x] Reconocimiento de foto en producción: Supabase Edge Function `reconocer-ingredientes` + Gemini (retry multi-modelo). Secret `GEMINI_API_KEY` en el proyecto Simpleat (ref `ysirdodhsufsdvhztvmq`). La app en Pages usa Supabase; en local usa Ollama. *(Nota 2026-10: cámara eliminada de la app; la función quedó deployada pero sin uso.)*
 - [x] Bug de título: la aromática/básico se perdía si había proteína. Fix en `generarTitulo` (js/core/cocina.js): "2 alitas, 1 cebolla morada" → "Alitas de Pollo con Cebolla Morada". Con tests.
 - [x] Umami Cloud instalado (script en `<head>` de index.html). PENDIENTE: el `data-website-id` real de Lucho.
-- [x] Analítica y conversiones centralizadas en `js/ui/analytics.js` (Umami + GA4 + Google Ads). PENDIENTE: IDs reales de GA4/Google Ads en el objeto `CONFIG` (al tope del archivo). El botón "Cocinar" dispara todo vía `Analytics.cocinar()` (app.js ya no llama a umami directo).
+- [x] Analítica y conversiones centralizadas en `js/ui/analytics.js` (Umami + GA4 + Google Ads). PENDIENTE: IDs reales de GA4/Google Ads en el objeto `CONFIG` (al tope del archivo). Eventos: `Analytics.cocinar()` (receta) y `Analytics.contactar()` (lead B2B, WhatsApp de la landing).
 - [ ] Funciones Pro (a futuro, después del lanzamiento gratis).
 
 ## Backend (producción)

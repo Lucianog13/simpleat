@@ -24,6 +24,7 @@
     ga4: "",
     adsConversionId: "",
     adsConversionLabel: "",
+    adsContactoLabel: "",
   };
 
   var gtagCargado = false;
@@ -67,8 +68,27 @@
     }
   }
 
+  // Lead B2B: el comercio pidió la demo (botón de WhatsApp de la landing).
+  function contactar() {
+    cargarGtag();
+    if (CONFIG.adsConversionId && CONFIG.adsContactoLabel) {
+      try {
+        gtag("event", "conversion", {
+          send_to: CONFIG.adsConversionId + "/" + CONFIG.adsContactoLabel,
+        });
+      } catch (err) { /* sin ads no se rompe */ }
+    }
+    if (CONFIG.ga4) {
+      try { gtag("event", "contactar"); } catch (err) { /* sin GA4 no se rompe */ }
+    }
+    if (root.umami) {
+      try { root.umami.track("contactar"); } catch (err) { /* sin analítica no se rompe */ }
+    }
+  }
+
   return {
     config: CONFIG,
     cocinar: cocinar,
+    contactar: contactar,
   };
 });

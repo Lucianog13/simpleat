@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es-AR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Simpleat para comercios — Demo carnicería · Vértice</title>
+  <meta name="description" content="Tu comercio de alimentos con app de recetas propia: tu marca, tus productos y recetas de chef. Pedí tu demo de Simpleat por WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Landing B2B (demo carnicería) — solo lo propio de esta página ── */
+    .saludo--b2b { padding-bottom: 1.6rem; }
+    .demo-tag {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fuego-vivo);
+      border: 1px solid var(--borde-fuego);
+      border-radius: var(--radio-pill);
+      padding: 0.3rem 0.7rem;
+      margin-bottom: 0.9rem;
+    }
+    .cta-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 1rem;
+      background: #25d366;
+      color: #0b3d21;
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radio-pill);
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+    .cta-whatsapp:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    .cta-whatsapp--grande { font-size: 1.05rem; padding: 0.9rem 1.8rem; }
+    .beneficios { margin-top: 2.2rem; }
+    .beneficios h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.3rem;
+      text-align: center;
+      margin: 0 0 1rem;
+    }
+    .beneficio {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      background: var(--sup-bajo);
+      border: 1px solid var(--borde);
+      border-radius: var(--radio-card);
+      padding: 1rem;
+      margin-bottom: 0.8rem;
+    }
+    .beneficio__icono { font-size: 1.5rem; line-height: 1; }
+    .beneficio strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .beneficio p { margin: 0; color: var(--texto-suave); font-size: 0.85rem; }
+    .cta-final {
+      margin-top: 2rem;
+      text-align: center;
+      background: var(--sup-bajo);
+      border: 1px solid var(--borde-fuego);
+      border-radius: var(--radio-card);
+      padding: 1.5rem 1rem;
+    }
+    .cta-final h2 { font-family: var(--serif); font-weight: 500; font-size: 1.35rem; margin: 0 0 0.35rem; }
+    .cta-final p { color: var(--texto-suave); font-size: 0.88rem; margin: 0 0 0.5rem; }
+    .whatsapp-flotante {
+      position: fixed;
+      right: 1rem;
+      bottom: 5.5rem;
+      z-index: 60;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #25d366;
+      color: #0b3d21;
+      font-size: 1.6rem;
+      border-radius: 50%;
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="halo halo--uno" aria-hidden="true"></div>
+
+  <header class="cabecera">
+    <div class="cabecera__fila">
+      <div class="marca">
+        <span class="marca__simple">Simple</span><span class="marca__eat">at</span>
+        <span class="marca__nodo">Entre Ríos</span>
+      </div>
+      <a href="https://lucianog13.github.io/portfolio/" target="_blank" rel="noopener" class="marca__nodo" style="color:var(--esmeralda-prof);text-decoration:none">Vértice</a>
+    </div>
+  </header>
+
+  <main class="principal">
+    <!-- Pitch B2B -->
+    <section class="saludo saludo--b2b">
+      <span class="demo-tag">Demo · Simpleat para comercios</span>
+      <h1>Así se ve tu carnicería con Simpleat</h1>
+      <p>Tu marca, tu color y tus cortes. Escribí un corte acá abajo y mirá la receta que le llega a tu cliente.</p>
+      <a class="cta-whatsapp" href="https://wa.me/5493434065289?text=Hola%2C%20quiero%20una%20demo%20de%20Simpleat%20para%20mi%20comercio" target="_blank" rel="noopener" data-contactar>Pedí tu demo</a>
+    </section>
+
+    <!-- Omnibar: demo viva -->
+    <section class="omnibar" aria-label="Buscador de recetas">
+      <div class="omnibar__caja">
+        <span class="omnibar__icono" aria-hidden="true">🥘</span>
+        <input
+          id="omnibar"
+          class="omnibar__input"
+          type="text"
+          inputmode="text"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          placeholder="¿Qué tenés? Ej: entraña, 1 cebolla morada"
+          aria-label="Ingredientes que tenés"
+        />
+        <button id="cocinar" class="omnibar__boton" type="button">Cocinar</button>
+      </div>
+
+      <div class="omnibar__rapidos">
+        <span class="etiqueta">Básicos:</span>
+        <button type="button" class="chip-sugerencia" data-agregar="huevo">+ Huevo</button>
+        <button type="button" class="chip-sugerencia" data-agregar="cebolla">+ Cebolla</button>
+        <button type="button" class="chip-sugerencia" data-agregar="queso">+ Queso</button>
+        <button type="button" class="chip-sugerencia" data-agregar="arroz">+ Arroz</button>
+      </div>
+
+      <div class="sugerencias" id="sugerencias" aria-label="Ejemplos rápidos"></div>
+    </section>
+
+    <section id="resultado" class="resultado" hidden aria-live="polite"></section>
+
+    <section id="vacio" class="vacio">
+      <p class="vacio__frase">Escribí lo que tenés y te digo <strong>qué</strong> cocinar y <strong>cómo</strong>, con la técnica de un chef.</p>
+      <p class="vacio__detalle">Nomenclatura oficial IPCVA · INTA · GAPA — y el toque de Entre Ríos.</p>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="beneficios">
+      <h2>Qué incluye</h2>
+      <div class="beneficio">
+        <span class="beneficio__icono">🏷️</span>
+        <div>
+          <strong>Tu marca, tu color</strong>
+          <p>La app lleva el nombre y los colores de tu comercio. Como si la hubieras hecho vos.</p>
+        </div>
+      </div>
+      <div class="beneficio">
+        <span class="beneficio__icono">🥩</span>
+        <div>
+          <strong>Tus productos, con su receta</strong>
+          <p>Cada corte, verdura o pescado que vendés, con su receta y técnica de chef.</p>
+        </div>
+      </div>
+      <div class="beneficio">
+        <span class="beneficio__icono">👨‍🍳</span>
+        <div>
+          <strong>Recetas que venden</strong>
+          <p>El cliente se lleva el corte y sabe cómo cocinarlo. Ticket más alto, cliente fiel.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="cta-final">
+      <h2>¿Querés esto para tu comercio?</h2>
+      <p>Te lo dejamos listo con tu marca en unos días.</p>
+      <a class="cta-whatsapp cta-whatsapp--grande" href="https://wa.me/5493434065289?text=Hola%2C%20quiero%20una%20demo%20de%20Simpleat%20para%20mi%20comercio" target="_blank" rel="noopener" data-contactar>Pedí tu demo</a>
+    </section>
+  </main>
+
+  <nav class="pienav">
+    <div class="pienav__barra">
+      <button class="pienav__item activo" data-nav="despensa" type="button">
+        <span class="ico">🥘</span><span class="txt">Despensa</span>
+      </button>
+      <button class="pienav__item" data-nav="recetas" type="button">
+        <span class="ico">📖</span><span class="txt">Recetas</span>
+      </button>
+    </div>
+  </nav>
+
+  <footer class="pie">
+    <span>Simple<span class="marca__eat">at</span></span>
+    <span class="pie__nota">Gastronomía argentina · Entre Ríos</span>
+    <span class="pie__vertice">un producto de <a href="https://lucianog13.github.io/portfolio/" target="_blank" rel="noopener"><strong>Vértice</strong></a></span>
+  </footer>
+
+  <a class="whatsapp-flotante" href="https://wa.me/5493434065289?text=Hola%2C%20quiero%20una%20demo%20de%20Simpleat%20para%20mi%20comercio" target="_blank" rel="noopener" data-contactar aria-label="Pedí tu demo por WhatsApp">💬</a>
+
+  <script src="js/data/ingredientes.js"></script>
+  <script src="js/data/comercio-demo.js"></script>
+  <script src="js/core/parser.js"></script>
+  <script src="js/core/cocina.js"></script>
+  <script src="js/core/coping.js"></script>
+  <script src="js/ui/analytics.js"></script>
+  <script src="js/ui/app.js"></script>
+  <script>
+    // Dispara la conversión "contactar" al tocar cualquier botón de WhatsApp.
+    (function () {
+      var links = document.querySelectorAll("[data-contactar]");
+      for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener("click", function () {
+          if (window.Analytics) {
+            try { window.Analytics.contactar(); } catch (err) { /* sin analítica no se rompe */ }
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
